@@ -56,7 +56,7 @@ const AddPanel = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/add-record', {
+      const response = await fetch('https://stadvdb-mco2-g11.onrender.com/add-record', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

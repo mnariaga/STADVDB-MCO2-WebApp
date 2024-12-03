@@ -78,7 +78,7 @@ const UpdatePage = () => {
   //const dataToSend = { field1: formData.field1, ...formData};
 
     try {
-      const response = await fetch('http://localhost:5000/update-record', {
+      const response = await fetch('https://stadvdb-mco2-g11.onrender.com/update-record', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

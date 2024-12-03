@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const executeQuery = async (query) => {
   try {
-    const response = await axios.post('http://localhost:5000/query', { query });
+    const response = await axios.post('https://stadvdb-mco2-g11.onrender.com/query', { query });
     return response.data;
   } catch (error) {
     if (error.code === 'ERR_NETWORK') {
@@ -16,7 +16,7 @@ export const executeQuery = async (query) => {
 
 export const executeRedirect = async () => {
   try {
-    const response = await axios.get('http://localhost:5000/redirect-node');
+    const response = await axios.get('https://stadvdb-mco2-g11.onrender.com/redirect-node');
     if (response.data.status === 'error') {
       // Display an alert for node failure
       alert(response.data.message);
@@ -32,7 +32,7 @@ export const executeRedirect = async () => {
 
 export const checkNode1 = async () => {
   try {
-    const response = await axios.get('http://localhost:5000/check-node1');
+    const response = await axios.get('https://stadvdb-mco2-g11.onrender.com/check-node1');
     
     if (response.data.status === 'error') {
       // Instead of alerting here, just return the error response

@@ -14,7 +14,7 @@ const SearchInputs = (onSearch, onNodeSelect) => {
   // Fetch the active node from the backend
   const fetchActiveNode = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/active-node`);
+      const response = await fetch(`https://stadvdb-mco2-g11.onrender.com/active-node`);
       const data = await response.json();
 
       if (response.ok) {
@@ -48,7 +48,7 @@ const SearchInputs = (onSearch, onNodeSelect) => {
     console.log(`Selected Node: ${node}`);
     
     try {
-      const response = await fetch(`http://localhost:5000/switch-node`, {
+      const response = await fetch(`https://stadvdb-mco2-g11.onrender.com/switch-node`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
