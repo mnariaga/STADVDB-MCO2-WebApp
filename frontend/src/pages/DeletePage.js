@@ -44,7 +44,7 @@ const DeletePage = () => {
     const id = transaction.id;
   
     try {
-      const response = await fetch('http://localhost:5000/delete-record', {
+      const response = await fetch('https://stadvdb-mco2-g11.onrender.com/delete-record', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
