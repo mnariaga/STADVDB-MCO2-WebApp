@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import UserInput from '../components/UserInput';
+import React from 'react';
 import AddPanel from '../components/AddPanel';
 import HomeButton from '../components/HomeButton';
 

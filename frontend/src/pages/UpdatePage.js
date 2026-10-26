@@ -12,6 +12,7 @@ const UpdatePage = () => {
   const formatDate = (dateString) => {
     if (!dateString) return ''; // Return empty if no date
     const date = new Date(dateString);
+    if (isNaN(date.getTime())) return '';
     // Convert to yyyy-MM-dd format required for input type="date"
     return date.toISOString().split('T')[0];
   };

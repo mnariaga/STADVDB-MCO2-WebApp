@@ -78,6 +78,19 @@ function createDbConnection(nodeConfig) {
   return connection;
 }
 
+// Helper function for delay
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+// Function to execute replication query on a database connection
+function executeReplication(transaction, connection) {
+  return new Promise((resolve, reject) => {
+    connection.query(transaction.query, (err, results) => {
+      if (err) return reject(err);
+      resolve(results);
+    });
+  });
+}
+
 // Retry logic for replication failures (Node 2 or Node 3 to central node and Node 2 or Node 3 replication failure)
 async function retryReplication(transaction, targetNode) {
   const maxRetries = 5;
@@ -348,6 +361,23 @@ async function processTransactionQueueImmediatelyWithLogs() {
   console.log('Transaction queue processing completed.');
 }
 
+// Function to test connectivity and recover a node
+async function recoverNode(node) {
+  return new Promise((resolve) => {
+    const nodeConfig = dbNodes[node];
+    if (!nodeConfig) return resolve(false);
+    const connection = createDbConnection(nodeConfig);
+    connection.ping((err) => {
+      connection.end();
+      if (err) {
+        resolve(false);
+      } else {
+        resolve(true);
+      }
+    });
+  });
+}
+
 // Route to simulate node recovery
 app.post('/simulate-recovery', async (req, res) => {
   const { node } = req.body;
@@ -428,8 +458,8 @@ app.post('/query', async (req, res) => {
 });
 
 // Delete data from MySQL
-app.delete('/delete-record', (req, res) => {
-  const { id } = req.body; // Expecting 'id' from the request body
+app.delete(['/delete-record', '/delete-record/:id'], (req, res) => {
+  const id = req.body?.id || req.params?.id || req.query?.id; // Accept id from body, params, or query
 
   if (!id || isNaN(id)) {
     return res.status(400).json({ error: 'Invalid ID' });

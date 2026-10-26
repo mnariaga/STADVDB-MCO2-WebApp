@@ -164,8 +164,8 @@ app.post('/add-record', (req, res) => {
   });
 });
 
-app.delete('/delete-record', (req, res) => {
-  const { id } = req.params;
+app.delete(['/delete-record', '/delete-record/:id'], (req, res) => {
+  const id = req.params.id || req.body?.id || req.query?.id;
   
   // Make sure 'id' is a valid number
   if (!id || isNaN(id)) {

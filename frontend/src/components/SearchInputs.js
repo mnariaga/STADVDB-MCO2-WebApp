@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Dropdown from './Dropdown';
 
-const SearchInputs = (onSearch, onNodeSelect) => {
+const SearchInputs = ({ onSearch, onNodeSelect }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [dropdownTitle, setDropdownTitle] = useState('Select Node'); // Dynamic title
 
@@ -27,6 +27,11 @@ const SearchInputs = (onSearch, onNodeSelect) => {
       console.error('Error:', error);
     }
   };
+
+  useEffect(() => {
+    fetchActiveNode();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   
 

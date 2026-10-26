@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { executeQuery } from '../services/api';
 import SearchInputs from '../components/SearchInputs';
-import Report2_TableComponent from '../components/Report2_TableComponent'; // Corrected the component import
+import Report2TableComponent from '../components/Report2_TableComponent'; // Corrected the component import
 import report2Icon from '../assets/report2.png'; 
 import HomeButton from '../components/HomeButton';
 
@@ -59,7 +59,7 @@ const Report2 = () => {
           <SearchInputs onSearch={handleSearch} />
         </section>
         <section>
-          <Report2_TableComponent transactions={filteredTransactions} />
+          <Report2TableComponent transactions={filteredTransactions} />
         </section>
       </main>
     </div>

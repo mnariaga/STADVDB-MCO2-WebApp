@@ -188,7 +188,7 @@ app.put('/update-record', async (req, res) => {
   }
 
   const query = `
-    UPDATE gamesservw
+    UPDATE games
     SET
       name = ?,
       release_date = ?,
